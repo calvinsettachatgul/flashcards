@@ -1,0 +1,16 @@
+<p>Create your new flashcard here</p>
+
+<%= form_for @flashcard, url: {action: "create"}, html: {class: "new_flashcard"} do |f| %>
+  <p>name</p>
+  <%= f.text_field :name ,size: "40x2" %>
+  <p>description</p>
+  <%= f.text_area :description ,size: "30x12" %>
+  <p>question</p>
+  <%= f.text_area :question ,size: "30x12" %>
+  <p>answer</p>
+  <%= f.text_area :answer, size: "60x12" %>
+  <p>tags</p>
+  <%= f.text_field :tags %>
+  <p></p>
+  <%= f.submit "Create" %>
+<% end %>
