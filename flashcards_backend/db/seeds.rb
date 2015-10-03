@@ -7,25 +7,26 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-flashcard1 = Flashcard.new
+# flashcard1 = Flashcard.new
 
-flashcard1.name = "flashcard1"
+# flashcard1.name = "flashcard1"
 
-flashcard1.question = "flashcard1 question"
-flashcard1.answer = "flashcard1 answer"
+# flashcard1.question = "flashcard1 question"
+# flashcard1.answer = "flashcard1 answer"
 
-puts flashcard1
+# puts flashcard1
 
-flashcard1.save
+# flashcard1.save
 
 @counter = 1
 10.times do
   flashcard = Flashcard.new
   flashcard.name = Faker::Lorem.word
-  flashcard.description = Faker::Lorem.word + " " + flashcard.id
   flashcard.question = Faker::Lorem.sentence
   flashcard.answer = Faker::Lorem.sentence
   flashcard.tags = Faker::Lorem.words
+  flashcard.save
+  flashcard.description = Faker::Lorem.word + " " + flashcard.id.to_s
   flashcard.save
   puts "created a new flashcard #{@counter}"
   @counter = @counter + 1

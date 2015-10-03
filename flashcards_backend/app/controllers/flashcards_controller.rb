@@ -7,7 +7,7 @@ class FlashcardsController < ApplicationController
 
   def show
     id = params["id"]
-    @flashcard = Flascard.find(id)
+    @flashcard = Flashcard.find(id)
   end
 
 end
