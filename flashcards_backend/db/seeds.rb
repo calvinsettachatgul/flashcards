@@ -25,6 +25,7 @@ flashcard1.save
   flashcard.description = Faker::Lorem.word + " " + flashcard.id
   flashcard.question = Faker::Lorem.sentence
   flashcard.answer = Faker::Lorem.sentence
+  flashcard.tags = Faker::Lorem.words
   flashcard.save
   puts "created a new flashcard #{@counter}"
   @counter = @counter + 1
