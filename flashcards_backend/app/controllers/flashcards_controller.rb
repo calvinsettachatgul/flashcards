@@ -5,4 +5,9 @@ class FlashcardsController < ApplicationController
     render json: @flashcards
   end
 
+  def show
+    id = params["id"]
+    @flashcard = Flascard.find(id)
+  end
+
 end

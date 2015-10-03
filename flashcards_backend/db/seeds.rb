@@ -22,6 +22,7 @@ flashcard1.save
 10.times do
   flashcard = Flashcard.new
   flashcard.name = Faker::Lorem.word
+  flashcard.description = Faker::Lorem.word + " " + flashcard.id
   flashcard.question = Faker::Lorem.sentence
   flashcard.answer = Faker::Lorem.sentence
   flashcard.save

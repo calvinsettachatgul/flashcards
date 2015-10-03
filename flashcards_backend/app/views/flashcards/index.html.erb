@@ -2,11 +2,13 @@
 <ul>
 <% @flashcards.each do |card| %>
   <li>name:
-    <%= card.name %>
-      question:
-    <%= card.question %>
-      answer:
-    <%= card.answer %>
-  </li>
+    <%= card.name %></li>
+    <li>description:
+    <%= card.description %></li>
+      <li>question:
+    <%= card.question %></li>
+       <li>answer:
+   <%= card.answer %></li>
+
 <% end %>
 </ul>
