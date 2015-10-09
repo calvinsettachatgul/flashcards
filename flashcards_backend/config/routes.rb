@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   #create all the routes for flashcards
   resources :flashcards
 
+  root 'flashcards#index'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
