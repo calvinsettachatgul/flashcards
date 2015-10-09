@@ -1,8 +1,22 @@
 class FlashcardsController < ApplicationController
 
+#           Prefix Verb   URI Pattern                    Controller#Action
+#     flashcards GET    /flashcards(.:format)          flashcards#index
+#                POST   /flashcards(.:format)          flashcards#create
+#  new_flashcard GET    /flashcards/new(.:format)      flashcards#new
+# edit_flashcard GET    /flashcards/:id/edit(.:format) flashcards#edit
+#      flashcard GET    /flashcards/:id(.:format)      flashcards#show
+#                PATCH  /flashcards/:id(.:format)      flashcards#update
+#                PUT    /flashcards/:id(.:format)      flashcards#update
+#                DELETE /flashcards/:id(.:format)      flashcards#destroy
+
   def index
     @flashcards =  Flashcard.all
     render json: @flashcards
+  end
+
+  def new
+    @flashcard = Flashcard.new
   end
 
   def show
@@ -10,12 +24,20 @@ class FlashcardsController < ApplicationController
     @flashcard = Flashcard.find(id)
   end
 
-  def new
-    @flashcard = Flashcard.new
+  def edit
+    @flashcard = Flashcard.find(id)
+
   end
 
+  def update
+    @flashcard = Flashcard.find(id)
+
+  end
+
+
+
+
   def create
-    p "******************"
     @flashcard_config = params["flashcard"]
     @new_flashcard = Flashcard.new()
     @new_flashcard.name = @flashcard_config['name']
