@@ -1,4 +1,16 @@
 <p> These are the flashcards </p>
+<p> The lorem card is </p>
+<p>***************************</p>
+<ul>
+  <li>name: <%=@lorem_card.name%></li>
+  <li>description: <%=@lorem_card.description%></li>
+  <li>question: <%=@lorem_card.question%></li>
+  <li>answer: <%=@lorem_card.answer%></li>
+  <li>tags: <%=@lorem_card.tags%></li>
+</ul>
+<p>***************************</p>
+
+
 <ul>
 <% @flashcards.each do |card| %>
   <li>name:

@@ -12,6 +12,7 @@ class FlashcardsController < ApplicationController
 
   def index
     @flashcards =  Flashcard.all
+    @lorem_card = Flashcard.generate_lorem
     # render json: @flashcards
   end
 
@@ -65,5 +66,7 @@ class FlashcardsController < ApplicationController
     # redirect_to :back
     redirect_to :action => "index"
   end
+
+
 
 end
