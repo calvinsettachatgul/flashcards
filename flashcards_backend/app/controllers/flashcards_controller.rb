@@ -12,22 +12,35 @@ class FlashcardsController < ApplicationController
 
   def index
     @flashcards =  Flashcard.all
-    render json: @flashcards
+    # render json: @flashcards
+  end
+
+  def create
+    @flashcard_config = params["flashcard"]
+    @new_flashcard = Flashcard.new()
+    @new_flashcard.name = @flashcard_config['name']
+    @new_flashcard.description = @flashcard_config['description']
+    @new_flashcard.question = @flashcard_config['question']
+    @new_flashcard.answer = @flashcard_config['answer']
+    @new_flashcard.tags = @flashcard_config['tags']
+    @new_flashcard.save
+    @flashcard = @new_flashcard
+    render "flashcards/show"
   end
 
   def new
     @flashcard = Flashcard.new
   end
 
-  def show
-    id = params["id"]
-    @flashcard = Flashcard.find(id)
-  end
-
   def edit
     id = params["id"]
     @flashcard = Flashcard.find(id)
 
+  end
+
+  def show
+    id = params["id"]
+    @flashcard = Flashcard.find(id)
   end
 
   def update
@@ -41,24 +54,16 @@ class FlashcardsController < ApplicationController
     @flashcard.tags = @flashcard_config['tags']
     @flashcard.save
     render "flashcards/show"
-
-
   end
 
-
-
-
-  def create
-    @flashcard_config = params["flashcard"]
-    @new_flashcard = Flashcard.new()
-    @new_flashcard.name = @flashcard_config['name']
-    @new_flashcard.description = @flashcard_config['description']
-    @new_flashcard.question = @flashcard_config['question']
-    @new_flashcard.answer = @flashcard_config['answer']
-    @new_flashcard.tags = @flashcard_config['tags']
-    @new_flashcard.save
-    @flashcard = @new_flashcard
-    render "flashcards/show"
+  def destroy
+    @flashcards = Flashcard.all
+    id = params["id"]
+    @flashcard = Flashcard.find(id)
+    Flashcard.destroy(id)
+    # render :index
+    # redirect_to :back
+    redirect_to :action => "index"
   end
 
 end

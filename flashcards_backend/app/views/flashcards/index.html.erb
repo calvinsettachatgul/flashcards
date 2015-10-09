@@ -11,6 +11,8 @@
    <%= card.answer %></li>
    <li>tags:
    <%= card.tags %></li>
+   <%= button_to "Delete card", { action: "destroy", id: card.id },
+                                method: :delete, data: { confirm: "Are you sure?" } %>
 
 <% end %>
 </ul>
