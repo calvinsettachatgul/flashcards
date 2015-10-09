@@ -25,12 +25,23 @@ class FlashcardsController < ApplicationController
   end
 
   def edit
+    id = params["id"]
     @flashcard = Flashcard.find(id)
 
   end
 
   def update
+    id = params["id"]
     @flashcard = Flashcard.find(id)
+    @flashcard_config = params["flashcard"]
+    @flashcard.name = @flashcard_config['name']
+    @flashcard.description = @flashcard_config['description']
+    @flashcard.question = @flashcard_config['question']
+    @flashcard.answer = @flashcard_config['answer']
+    @flashcard.tags = @flashcard_config['tags']
+    @flashcard.save
+    render "flashcards/show"
+
 
   end
 

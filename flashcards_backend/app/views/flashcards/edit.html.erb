@@ -1,4 +1,19 @@
 
 <p>Edit your flashcard here</p>
 
-form_for(@flashcard)
+<%= @flashcard %>
+
+<%= form_for(@flashcard) do |f|%>
+  <p>name</p>
+  <%= f.text_field :name ,size: "40x2" %>
+  <p>description</p>
+  <%= f.text_area :description ,size: "30x12" %>
+  <p>question</p>
+  <%= f.text_area :question ,size: "30x12" %>
+  <p>answer</p>
+  <%= f.text_area :answer, size: "60x12" %>
+  <p>tags</p>
+  <%= f.text_field :tags %>
+  <p></p>
+  <%= f.submit "Edit" %>
+<% end %>
