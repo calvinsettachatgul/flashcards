@@ -17,6 +17,8 @@ class FlashcardsController < ApplicationController
   end
 
   def create
+    p "made a card"
+    p params
     @flashcard_config = params["flashcard"]
     @new_flashcard = Flashcard.new()
     @new_flashcard.name = @flashcard_config['name']

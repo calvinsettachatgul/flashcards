@@ -1,14 +1,17 @@
 <p> These are the flashcards </p>
 <p> The lorem card is </p>
-<p>***************************</p>
-<ul>
-  <li>name: <%=@lorem_card.name%></li>
-  <li>description: <%=@lorem_card.description%></li>
-  <li>question: <%=@lorem_card.question%></li>
-  <li>answer: <%=@lorem_card.answer%></li>
-  <li>tags: <%=@lorem_card.tags%></li>
+<p>*********************************</p>
+<ul class="new_lorem">
+  <li class="lorem_name"><%=@lorem_card.name%></li>
+  <li class="lorem_description"><%=@lorem_card.description%></li>
+  <li class="lorem_question"><%=@lorem_card.question%></li>
+  <li class="lorem_answer"><%=@lorem_card.answer%></li>
+  <li class="lorem_tags"><%=@lorem_card.tags%></li>
 </ul>
-<p>***************************</p>
+<form action="">
+  <input class="create_lorem" type="submit" value="create this card">
+</form>
+<p>*********************************</p>
 
 
 <ul>
