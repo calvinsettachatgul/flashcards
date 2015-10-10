@@ -11,8 +11,29 @@ $(document).ready(function(){
 
   button.on('click', createLoremCard);
 
+  var html = showTemplate({title: "My New Post", body: "This is my first post!"});
+
+
+  var templateArea = $(".templateArea");
+
+  templateArea.prepend(html);
 
 })
+
+var showTemplate = function(data){
+
+  var source   = $("#entry-template").html();
+
+  if(source){
+  var template = Handlebars.compile(source);
+
+  var context = data;
+  var html    = template(context);
+
+  return html;
+  }
+
+}
 
 var createLoremCard = function(event){
     event.preventDefault();

@@ -26,8 +26,23 @@
    <%= card.answer %></li>
    <li>tags:
    <%= card.tags %></li>
+
+   <%= button_to "Edit card", {:action=>"edit", :controller=>"flashcards", id: card.id} , method: :get %>
    <%= button_to "Delete card", { action: "destroy", id: card.id },
                                 method: :delete, data: { confirm: "Are you sure?" } %>
 
+
+
 <% end %>
 </ul>
+
+<div class="templateArea"></div>
+
+<script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <h1>{{title}}</h1>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
