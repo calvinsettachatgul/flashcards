@@ -13,26 +13,13 @@ $(document).ready(function(){
   buttonCreateLorem.on('click', createLoremCard);
 
   buttonEditCard.on('click', showEditForm);
-  var card = getCard(396);
-  console.log(card);
 
 })
 
 var showEditForm = function(event){
   event.preventDefault();
-
-  var html = getEditForm({name: "name",
-                          descritpion: "description",
-                          question: "question",
-                          answer: "answer",
-                          tags: "tags",});
-
-
-  var editCardFormArea = $(".editCardFormArea");
-
-  editCardFormArea.empty();
-
-  editCardFormArea.prepend(html);
+  var id = event.target.id
+  getCard(id);
 }
 
 var showTemplate = function(data){
@@ -79,7 +66,7 @@ var createLoremCard = function(event){
     });
 
     request.done(function(response){
-
+        //append the card to the list
     });
 
 };
@@ -95,6 +82,25 @@ var getCard = function(id){
     });
   request.done(function(response){
       console.log(response);
+      var html = getEditForm(response);
+      var flashcard_found = response;
+
+
+      // var html = getEditForm({name: response.name,
+      //                     description: response.description,
+      //                     question: response.question,
+      //                     answer: response,
+      //                     tags: "tags",});
+
+  console.log(flashcard_found);
+
+
+  var editCardFormArea = $(".editCardFormArea");
+
+
+
+  editCardFormArea.prepend(html);
+
   });
 
   return "got the card"
