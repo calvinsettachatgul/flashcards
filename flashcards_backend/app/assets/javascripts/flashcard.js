@@ -2,37 +2,59 @@ $(document).ready(function(){
 
   test();
 
-  var button = $('.create_lorem');
+  var buttonCreateLorem = $('.create_lorem');
+  var buttonEditCard = $('.button_to_edit');
 
   // button.on('click', function(event){
   //   event.preventDefault();
   //   console.log(event);
   // });
 
-  button.on('click', createLoremCard);
+  buttonCreateLorem.on('click', createLoremCard);
 
-  var html = showTemplate({title: "My New Post", body: "This is my first post!"});
-
-
-  var templateArea = $(".templateArea");
-
-  templateArea.prepend(html);
+  buttonEditCard.on('click', showEditForm);
+  var card = getCard(396);
+  console.log(card);
 
 })
 
-var showTemplate = function(data){
+var showEditForm = function(event){
+  event.preventDefault();
 
+  var html = getEditForm({name: "name",
+                          descritpion: "description",
+                          question: "question",
+                          answer: "answer",
+                          tags: "tags",});
+
+
+  var editCardFormArea = $(".editCardFormArea");
+
+  editCardFormArea.empty();
+
+  editCardFormArea.prepend(html);
+}
+
+var showTemplate = function(data){
   var source   = $("#entry-template").html();
 
   if(source){
   var template = Handlebars.compile(source);
-
   var context = data;
   var html    = template(context);
-
   return html;
   }
+}
 
+var getEditForm = function(data){
+  var source   = $("#edit-card-template").html();
+
+  if(source){
+  var template = Handlebars.compile(source);
+  var context = data;
+  var html    = template(context);
+  return html;
+  }
 }
 
 var createLoremCard = function(event){
@@ -52,7 +74,7 @@ var createLoremCard = function(event){
 
     var request = $.ajax({
       url: '/flashcards',
-      type: 'post',
+      method: 'post',
       data: {"flashcard": flashcard},
     });
 
@@ -61,6 +83,24 @@ var createLoremCard = function(event){
     });
 
 };
+
+var getCard = function(id){
+
+  var url = '/flashcards/' + id;
+
+  var request = $.ajax({
+      url: url,
+      method: 'get',
+      dataType: 'json',
+    });
+  request.done(function(response){
+      console.log(response);
+  });
+
+  return "got the card"
+
+}
+
 
 
 var test = function(){

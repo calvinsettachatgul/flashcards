@@ -44,6 +44,15 @@ class FlashcardsController < ApplicationController
   def show
     id = params["id"]
     @flashcard = Flashcard.find(id)
+    respond_to do |format|
+
+      format.html # being explicit here, render not really required
+
+      format.json { render json: @flashcard }
+
+
+    end
+
   end
 
   def update

@@ -11,6 +11,7 @@
 <form action="">
   <input class="create_lorem" type="submit" value="create this card">
 </form>
+<div class="editCardFormArea"></div>
 <p>*********************************</p>
 
 
@@ -27,16 +28,15 @@
    <li>tags:
    <%= card.tags %></li>
 
-   <%= button_to "Edit card", {:action=>"edit", :controller=>"flashcards", id: card.id} , method: :get %>
-   <%= button_to "Delete card", { action: "destroy", id: card.id },
-                                method: :delete, data: { confirm: "Are you sure?" } %>
+   <%= button_to "Edit card", {:action=>"edit", :controller=>"flashcards", id: card.id, } , method: :get, remote: true,  form_class: "button_to_edit", id: card.id%>
+   <%= button_to "Delete card", { action: "destroy", id: card.id},
+                                method: :delete , data: { confirm: "Are you sure?" } %>
 
 
 
 <% end %>
 </ul>
 
-<div class="templateArea"></div>
 
 <script id="entry-template" type="text/x-handlebars-template">
   <div class="entry">
@@ -46,3 +46,16 @@
     </div>
   </div>
 </script>
+
+<script id="edit-card-template" type="text/x-handlebars-template">
+  <div class="card">
+    <h1>{{name}}</h1>
+    <div class="body">
+      {{description}}<br>
+      {{question}}<br>
+      {{answer}}<br>
+      {{tags}}<br>
+    </div>
+  </div>
+</script>
+
