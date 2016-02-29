@@ -11,6 +11,7 @@
 <form action="">
   <input class="create_lorem" type="submit" value="create this card">
 </form>
+<div class="editCardFormArea"></div>
 <p>*********************************</p>
 
 
@@ -27,16 +28,15 @@
    <li>tags:
    <%= card.tags %></li>
 
-   <%= button_to "Edit card", {:action=>"edit", :controller=>"flashcards", id: card.id} , method: :get %>
-   <%= button_to "Delete card", { action: "destroy", id: card.id },
-                                method: :delete, data: { confirm: "Are you sure?" } %>
+   <%= button_to "Edit card", {:action=>"edit", :controller=>"flashcards", id: card.id, } , method: :get, remote: true,  form_class: "button_to_edit", id: card.id%>
+   <%= button_to "Delete card", { action: "destroy", id: card.id},
+                                method: :delete , data: { confirm: "Are you sure?" } %>
 
 
 
 <% end %>
 </ul>
 
-<div class="templateArea"></div>
 
 <script id="entry-template" type="text/x-handlebars-template">
   <div class="entry">
@@ -45,4 +45,33 @@
       {{body}}
     </div>
   </div>
+</script>
+
+<!--     <p>Edit Card</p>
+    <div>
+      {{name}}<br>
+      {{description}}<br>
+      {{question}}<br>
+      {{answer}}<br>
+      {{tags}}<br>
+    </div>
+  </div> -->
+
+<script  id="edit-card-template" type="text/x-handlebars-template">
+<form class="edit_flashcard" action="/flashcards/" +{{id}}  accept-charset="UTF-8" method="post">
+<input type="hidden" name="_method" value="put" />
+  <p>name</p>
+  <input size="40x2" type="text" value={{name}} name="flashcard[name]" id="flashcard_name" />
+  <p>description</p>
+  <textarea name="flashcard[description]" id="flashcard_description"  value={{desciption}} cols="30" rows="12">
+qui</textarea>
+  <p>question</p>
+  <textarea name="flashcard[question]" id="flashcard_question" value={{question}} cols="30" rows="12">
+Id deleniti inventore voluptas aut est.</textarea>
+  <p>answer</p>
+  <textarea name="flashcard[answer]" id="flashcard_answer" value={{answer}} cols="60" rows="12"></textarea>
+  <p>tags</p>
+  <input type="text"  name="flashcard[tags]" id="flashcard_tags" value={{tags}}/>
+  <input type="submit" name="commit" value="Edit" />
+</form>
 </script>
